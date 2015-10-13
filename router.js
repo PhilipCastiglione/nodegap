@@ -1,9 +1,12 @@
 function route(handle, pathname) {
   console.log("This function will route the request for " + pathname);
   if (typeof handle[pathname] === 'function') {
-    handle[pathname]();
+    handle[pathname](response);
   } else {
-    console.log("No handler for " + pathname + ", so 404 i guess");
+    console.log("No handler for " + pathname);
+    response.writeHead(404, {"Content-Type": "text/plain"});
+    response.write("Sorry brosef, no such path " + pathname + ". 404.");
+    response.end();
   }
 }
 
