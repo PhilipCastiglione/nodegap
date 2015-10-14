@@ -18,7 +18,7 @@ function start(route, handle) {
       route(handle, pathname, response, postData);
     });
 
-    route(handle, pathname, response);
+    route(handle, pathname, response, postData);
   }
   
   http.createServer(onRequest).listen(8888);

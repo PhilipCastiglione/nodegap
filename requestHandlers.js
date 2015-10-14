@@ -1,4 +1,6 @@
-function start(response) {
+var querystring = require("querystring");
+
+function start(response, postData) {
   console.log("Request handler 'start' was called.");
 
   var body = '<html>' +
@@ -15,15 +17,22 @@ function start(response) {
     '</html>';
 
   response.writeHead(200, {"Content-Type": "text/html"});
-  response.write(body);
-  response.end();
+  //response.write(body);
+  response.end(body);
+  //response.end();
 }
 
-function upload(response) {
+function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
+  console.log("postdata is " + postData);
+  console.log("querystring parsed postdata is " + querystring.parse(postData));
+  console.log("jsoned thingo " + JSON.stringify(querystring.parse(postData)));
+  var content = querystring.parse(postData).text;
+  console.log("querystring parsed postdata .text is " + querystring.parse(postData).text);
   response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write("In upload");
-  response.end();
+  //response.write("In upload, and you sent through " + querystring.parse(postData).text);
+  response.end("In upload, and you sent through " + content);
+  //response.end();
 }
 
 exports.start = start;
