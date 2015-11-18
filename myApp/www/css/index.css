@@ -20,22 +20,12 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+/* Portrait layout (default) */
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
@@ -45,13 +35,28 @@ body {
     width:100%;
 }
 
-/* Portrait layout (default) */
+#console {
+  padding: 20px;
+  border: 1px solid black;
+}
+
+#ajaxBtn {
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid red;
+}
+
+#connection {
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid orange;
+}
+
 .app {
-    background:url(../img/logo2.png) no-repeat center top; /* 170px x 200px */
     background-size: 240px 160px;
     position:absolute;             /* position in the center of the screen */
     left:50%;
-    top:50%;
+    top:10%;
     height:50px;                   /* text area height */
     width:225px;                   /* text area width */
     text-align:center;

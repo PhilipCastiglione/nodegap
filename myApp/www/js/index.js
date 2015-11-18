@@ -19,48 +19,36 @@
 var app = {
   // Application Constructor
   initialize: function() {
-      this.bindEvents();
+      app.bindEvents();
   },
   // Bind Event Listeners
   //
   // Bind any events that are required on startup. Common events are:
   // 'load', 'deviceready', 'offline', and 'online'.
   bindEvents: function() {
-    document.addEventListener('deviceready', this.onDeviceReady, false);
+    document.addEventListener('deviceready', app.doStartingStuff, false);
+    document.addEventListener('offline', function() {}, false);
+    document.addEventListener('online', function() {}, false);
   },
-  // deviceready Event Handler
-  //
-  // The scope of 'this' is the event. In order to call the 'receivedEvent'
-  // function, we must explicitly call 'app.receivedEvent(...);'
-  onDeviceReady: function() {
-      app.receivedEvent('deviceready');
+  doStartingStuff: function() {
+    document.getElementById('ajaxBtn').addEventListener('touchstart', app.updateTime, false);
+    document.getElementById('connection').addEventListener('touchstart', app.connectionLog, false);
   },
-  // Update DOM on a Received Event
-  receivedEvent: function(id) {
-    var parentElement = document.getElementById(id);
-    var listeningElement = parentElement.querySelector('.listening');
-    var receivedElement = parentElement.querySelector('.received');
-
-    listeningElement.setAttribute('style', 'display:none;');
-    receivedElement.setAttribute('style', 'display:block;');
-
-    console.log('Received Event: ' + id);
-
-    document.getElementById('ajaxBtn').addEventListener('touchstart', app.apIzzle);
+  updateTime: function(){
+    (navigator.connection.type != 'NONE')? app.apiCall() : app.localCall();
   },
-  doop: function(){
-    console.log('doop');
+  localCall: function(){
+    document.getElementById('time').innerHTML = localStorage.getItem('time');
   },
-  apIzzle: function(){
+  apiCall: function(){
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://10.1.1.122:4000/api/time');
+    xhr.open('GET', 'http://vcs.hhd.com.au:4000/api/time');
     xhr.send(null);
 
     xhr.onreadystatechange = function(){
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          console.log('success');
-          console.log(xhr);
+          localStorage.setItem('time', xhr.responseText + ' from web');
           document.getElementById('time').innerHTML = xhr.responseText;
         } else {
           console.log('Error: ' + xhr.status);
@@ -68,5 +56,8 @@ var app = {
         }
       }
     };
+  },
+  connectionLog: function() {
+    document.getElementById('console').innerHTML = (navigator.connection.type);
   }
 };
