@@ -35,10 +35,13 @@ var app = {
     document.getElementById('connection').addEventListener('touchstart', app.connectionLog, false);
   },
   updateTime: function(){
-    (navigator.connection.type != 'NONE')? app.apiCall() : app.localCall();
+    (navigator.connection.type != 'none')? app.apiCall() : app.localCall();
   },
   localCall: function(){
-    document.getElementById('time').innerHTML = localStorage.getItem('time');
+    document.getElementById('time').innerHTML = 'here it comes!';
+    setTimeout(function(){
+      document.getElementById('time').innerHTML = localStorage.getItem('time');
+    }, 2000);
   },
   apiCall: function(){
     var xhr = new XMLHttpRequest();
@@ -58,6 +61,7 @@ var app = {
     };
   },
   connectionLog: function() {
+    console.log(navigator.connection);
     document.getElementById('console').innerHTML = (navigator.connection.type);
   }
 };
