@@ -21,21 +21,21 @@ var app = {
   initialize: function() {
       app.bindEvents();
   },
-  // Bind Event Listeners
-  //
-  // Bind any events that are required on startup. Common events are:
-  // 'load', 'deviceready', 'offline', and 'online'.
   bindEvents: function() {
     document.addEventListener('deviceready', app.doStartingStuff, false);
-    document.addEventListener('offline', function() {}, false);
-    document.addEventListener('online', function() {}, false);
+    document.addEventListener('offline', function() {
+      document.getElementById('console').innerHTML = ('just went offline silly');
+    }, false);
+    document.addEventListener('online', function() {
+      document.getElementById('console').innerHTML = ('nice one, back online');
+    }, false);
   },
   doStartingStuff: function() {
     document.getElementById('ajaxBtn').addEventListener('touchstart', app.updateTime, false);
     document.getElementById('connection').addEventListener('touchstart', app.connectionLog, false);
   },
   updateTime: function(){
-    (navigator.connection.type != 'none')? app.apiCall() : app.localCall();
+    (navigator.connection.type == 'none')? app.localCall() : app.apiCall()
   },
   localCall: function(){
     document.getElementById('time').innerHTML = 'here it comes!';
