@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.myapp.sample" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>appSample</name>
+<widget id="au.com.hardhatdigital.HHDAppSample" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>HHDAppSample</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Sample app for testing phonegap/cordova.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="phil@hhd.com.au" href="https://hardhatdigital.com.au">
+        Hardhat Digital
     </author>
     <content src="index.html" />
     <preference name="permissions" value="none" />
