@@ -33,6 +33,7 @@ var app = {
   doStartingStuff: function() {
     document.getElementById('ajaxBtn').addEventListener('touchstart', app.updateTime, false);
     document.getElementById('connection').addEventListener('touchstart', app.connectionLog, false);
+    document.getElementById('bigCall').addEventListener('touchstart', app.bigCall, false);
   },
   updateTime: function(){
     (navigator.connection.type == 'none')? app.localCall() : app.apiCall()
@@ -53,6 +54,24 @@ var app = {
         if (xhr.status === 200) {
           localStorage.setItem('time', xhr.responseText + ' from web');
           document.getElementById('time').innerHTML = xhr.responseText;
+        } else {
+          console.log('Error: ' + xhr.status);
+          console.log(xhr);
+        }
+      }
+    };
+  },
+  bigCall: function(){
+    var start = new Date;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:4000/api/test');
+    xhr.send(null);
+
+    xhr.onreadystatechange = function(){
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          localStorage.setItem('testData', xhr.responseText);
+          document.getElementById('console').innerHTML = 'success in ' + ((new Date) - start)/1000 + 'sec';
         } else {
           console.log('Error: ' + xhr.status);
           console.log(xhr);
