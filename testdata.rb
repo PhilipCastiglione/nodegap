@@ -19,7 +19,7 @@ course_list = {
 }
 courses = []
 courses_list = []
-200.times do
+300.times do
   courses << course
 end
 40.times do
@@ -48,7 +48,7 @@ career_list = {
 }
 careers = []
 careers_list = []
-500.times do
+700.times do
   careers << career
 end
 40.times do
@@ -56,7 +56,7 @@ end
 end
 careers_list_40 = careers_list.slice(0, 40)
 
-c = File.new("courses_200.json", "w")
+c = File.new("courses_300.json", "w")
 c.write(JSON.generate(courses))
 c.close
 
@@ -64,7 +64,7 @@ c = File.new("courses_list_40.json", "w")
 c.write(JSON.generate(courses_list))
 c.close
 
-c = File.new("careers_500.json", "w")
+c = File.new("careers_700.json", "w")
 c.write(JSON.generate(careers))
 c.close
 
